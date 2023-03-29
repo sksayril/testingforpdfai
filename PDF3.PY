@@ -35,15 +35,13 @@
 import pandas as pd
 import pdfminer.high_level
 
-# Extract the text from the PDF file
 page_text = pdfminer.high_level.extract_text('Jaquar.pdf')
 
-# Split the text into rows and columns
+
 rows = page_text.split('\n')
 columns = [row.split('\t') for row in rows]
 
-# Create a pandas DataFrame from the columns
 df = pd.DataFrame(columns)
 
-# Save the DataFrame as an Excel file
+
 df.to_excel('output.xlsx', index=False)

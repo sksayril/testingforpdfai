@@ -37,29 +37,22 @@ import random
 import pdfplumber
 import csv
 
-# open the PDF file
+
 with pdfplumber.open("Jaquar.pdf") as pdf_file:
 
-    # loop over each page in the PDF
     for page in pdf_file.pages:
 
-        # extract the text from the page
         text = page.extract_text()
 
-        # split the text into lines
         lines = text.split("\n")
 
-        # create a CSV writer
         with open("output1.txt", "w", newline='') as csv_file:
             writer = csv.writer(csv_file)
 
-            # loop over each line in the text
             for line in lines:
 
-                # split the line into cells using comma as delimiter
                 cells = line.split(" ")
 
-                # write the cells to the CSV file
                 writer.writerow(cells)
 # with open('output.csv', 'r') as file:
 #     reader = csv.reader(file)
