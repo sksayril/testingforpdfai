@@ -30,15 +30,15 @@ pdf_file.close()
 
 
 def preprocess_text(text):
-    # Convert text to lowercase
+    # Lowercase convert
     text = text.lower()
 
     text = text.translate(str.maketrans('', '', string.punctuation))
 
-    # Remove numbers
+    # numbers delete
     text = re.sub(r'\d+', '', text)
 
-    # Remove extra whitespace
+    # Remove space
     text = re.sub(r'\s+', ' ', text).strip()
 
     return text
@@ -137,18 +137,16 @@ app = Flask(_name_)
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # Get the request data and preprocess it
     data = request.json
     features = scaler.transform([[data['feature1'], data['feature2'], ...]])
 
-    # Make a prediction using the trained model
+    # prediction to train model
     prediction = model.predict(features)[0]
 
-    # Return the prediction as a JSON response
     response = {'prediction': prediction}
     return jsonify(response)
 
 
-# Run the app on a local server
+# Flask Libary use to run this app
 if _name_ == '_main_':
     app.run(debug=True)
